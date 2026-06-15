@@ -1,34 +1,40 @@
-import { createContext, useContext, useState } from "react";
+import {
+createContext,
+useContext,
+useState
+}
+from "react";
 
 
-const AuthContext = createContext();
+import {jwtDecode} from "jwt-decode";
+
+
+const AuthContext=createContext();
 
 
 
 export function AuthProvider({children}){
 
 
-const [user,setUser] = useState(
+const [user,setUser]=useState(()=>{
 
-JSON.parse(
-localStorage.getItem("user")
-)
 
-|| null
+const token=localStorage.getItem("token");
 
-);
+
+if(!token)
+return null;
+
+
+return jwtDecode(token);
+
+
+});
+
 
 
 
 const login=(data)=>{
-
-
-const userData={
-
-role:data.role
-
-};
-
 
 
 localStorage.setItem(
@@ -38,17 +44,24 @@ data.access_token
 
 
 
-localStorage.setItem(
-"user",
-JSON.stringify(userData)
+const decoded=jwtDecode(
+data.access_token
 );
 
 
 
-setUser(userData);
+localStorage.setItem(
+"user",
+JSON.stringify(decoded)
+);
+
+
+
+setUser(decoded);
 
 
 };
+
 
 
 
@@ -67,7 +80,9 @@ setUser(null);
 
 
 
-return (
+
+
+return(
 
 <AuthContext.Provider
 
@@ -84,8 +99,7 @@ logout
 </AuthContext.Provider>
 
 
-);
-
+)
 
 }
 

@@ -1,23 +1,56 @@
-import { useEffect, useState } from "react";
-import { getStats } from "../../api/dashboardApi";
+import Navbar from "../../components/Navbar";
+import PredictForm from "../../components/PredictForm";
+import ResultCard from "../../components/ResultCard";
 
-export default function TeacherDashboard() {
-  const [stats, setStats] = useState(null);
+import {useState} from "react";
 
-  useEffect(() => {
-    getStats().then(res => setStats(res.data));
-  }, []);
 
-  return (
-    <div style={{ padding: 30 }}>
-      <h1>Teacher Dashboard</h1>
 
-      {stats && (
-        <>
-          <p>Total Predictions: {stats.total_predictions}</p>
-          <p>High Risk Students: {stats.high_risk}</p>
-        </>
-      )}
-    </div>
-  );
+export default function TeacherDashboard(){
+
+
+const [result,setResult]=useState(null);
+
+
+
+return(
+
+<div>
+
+
+<Navbar/>
+
+
+<div style={{padding:30}}>
+
+
+<h1>
+Teacher Dashboard
+</h1>
+
+
+<PredictForm
+
+setResult={setResult}
+
+/>
+
+
+<ResultCard
+
+result={result}
+
+/>
+
+
+
+</div>
+
+
+</div>
+
+
+)
+
+
 }

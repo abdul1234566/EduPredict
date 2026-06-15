@@ -1,311 +1,177 @@
 import { useState } from "react";
-
 import { loginUser } from "../api/api";
-
-import { saveToken, getUser } from "../auth/auth";
-
+import { useAuth } from "../auth/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 
 export default function Login(){
 
 
-    const [form,setForm] = useState({
+const {login} = useAuth();
 
-        email:"",
+const navigate = useNavigate();
 
-        password:""
 
-    });
+const [form,setForm]=useState({
 
+email:"",
+password:""
 
+});
 
-    const [error,setError] = useState("");
 
+const [error,setError]=useState("");
 
 
-    const handleChange = (e)=>{
 
+const handleChange=(e)=>{
 
-        setForm({
+setForm({
 
-            ...form,
+...form,
 
-            [e.target.name]:e.target.value
+[e.target.name]:e.target.value
 
-        });
+});
 
+};
 
-    };
 
 
+const handleSubmit=async(e)=>{
 
+e.preventDefault();
 
-    const handleSubmit = async(e)=>{
 
+try{
 
-        e.preventDefault();
 
+const res = await loginUser(form);
 
-        setError("");
 
 
+login(res.data);
 
-        try{
 
 
-            const res = await loginUser(form);
+if(res.data.role==="admin"){
 
+navigate("/admin");
 
+}
 
-            // Save JWT token
+else if(res.data.role==="teacher"){
 
-            saveToken(
+navigate("/teacher");
 
-                res.data.access_token
+}
 
-            );
+else if(res.data.role==="student"){
 
+navigate("/student");
 
+}
 
 
-            // Decode JWT
 
-            const user = getUser();
+}
+catch(err){
 
+console.log(err);
 
+setError(
+"Invalid email or password"
+);
 
-            console.log(
-                "Logged User:",
-                user
-            );
 
+}
 
 
 
-            // Role based redirect
+};
 
 
-            if(user.role === "admin"){
 
+return (
 
-                window.location="/admin";
+<div
+style={{
+width:"350px",
+margin:"100px auto",
+padding:"20px",
+border:"1px solid #ddd",
+borderRadius:"10px"
+}}
+>
 
 
-            }
+<h2>
+EduPredict Login
+</h2>
 
-            else if(user.role === "teacher"){
 
 
-                window.location="/teacher";
+{
+error &&
 
+<p style={{color:"red"}}>
 
-            }
+{error}
 
-            else if(user.role === "student"){
+</p>
 
+}
 
-                window.location="/student";
 
 
-            }
+<form onSubmit={handleSubmit}>
 
-            else{
 
+<input
 
-                setError(
-                    "Invalid user role"
-                );
+name="email"
 
+placeholder="Email"
 
-            }
+value={form.email}
 
+onChange={handleChange}
 
+/>
 
 
-        }
 
-        catch(err){
+<input
 
+name="password"
 
-            console.log(err);
+type="password"
 
+placeholder="Password"
 
+value={form.password}
 
-            setError(
+onChange={handleChange}
 
-                "Invalid email or password"
+/>
 
-            );
 
 
-        }
+<button>
 
+Login
 
-    };
+</button>
 
 
+</form>
 
 
 
-    return(
+</div>
 
 
-        <div
-
-        style={{
-
-            width:"350px",
-
-            margin:"100px auto",
-
-            padding:"20px",
-
-            border:"1px solid #ddd",
-
-            borderRadius:"10px"
-
-        }}
-
-        >
-
-
-            <h2>
-
-                EduPredict Login
-
-            </h2>
-
-
-
-
-            {
-                error &&
-
-                <p
-
-                style={{
-
-                    color:"red"
-
-                }}
-
-                >
-
-                    {error}
-
-                </p>
-
-            }
-
-
-
-
-            <form onSubmit={handleSubmit}>
-
-
-                <input
-
-
-                name="email"
-
-
-                placeholder="Email"
-
-
-                value={form.email}
-
-
-                onChange={handleChange}
-
-
-                style={{
-
-                    display:"block",
-
-                    width:"100%",
-
-                    margin:"10px 0",
-
-                    padding:"10px"
-
-                }}
-
-
-                />
-
-
-
-
-
-                <input
-
-
-                name="password"
-
-
-                type="password"
-
-
-                placeholder="Password"
-
-
-                value={form.password}
-
-
-                onChange={handleChange}
-
-
-                style={{
-
-                    display:"block",
-
-                    width:"100%",
-
-                    margin:"10px 0",
-
-                    padding:"10px"
-
-                }}
-
-
-                />
-
-
-
-
-
-                <button
-
-
-                type="submit"
-
-
-                style={{
-
-                    width:"100%",
-
-                    padding:"10px"
-
-                }}
-
-
-                >
-
-                    Login
-
-
-                </button>
-
-
-
-            </form>
-
-
-
-        </div>
-
-
-    )
+)
 
 
 }

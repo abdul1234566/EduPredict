@@ -1,68 +1,119 @@
 import {
-  BrowserRouter,
-  Routes,
-  Route,
-  Navigate
-} from "react-router-dom";
+BrowserRouter,
+Routes,
+Route
+}
+from "react-router-dom";
+
 
 import Login from "./pages/Login";
 
-import AdminDashboard from "./pages/Dashboard/AdminDashboard";
-import TeacherDashboard from "./pages/Dashboard/TeacherDashboard";
-import StudentDashboard from "./pages/Dashboard/StudentDashboard";
 
-import ProtectedRoute from "./components/ProtectedRoute";
+import AdminDashboard 
+from "./pages/Dashboard/AdminDashboard";
 
 
-function App() {
-  return (
-    <BrowserRouter>
-
-      <Routes>
-
-        {/* DEFAULT ROUTE → LOGIN */}
-        <Route path="/" element={<Navigate to="/login" />} />
-
-        {/* LOGIN */}
-        <Route path="/login" element={<Login />} />
+import TeacherDashboard 
+from "./pages/Dashboard/TeacherDashboard";
 
 
-        {/* PROTECTED ROUTES */}
+import StudentDashboard 
+from "./pages/Dashboard/StudentDashboard";
 
-        <Route
-          path="/admin"
-          element={
-            <ProtectedRoute role="admin">
-              <AdminDashboard />
-            </ProtectedRoute>
-          }
-        />
 
-        <Route
-          path="/teacher"
-          element={
-            <ProtectedRoute role="teacher">
-              <TeacherDashboard />
-            </ProtectedRoute>
-          }
-        />
+import ProtectedRoute 
+from "./components/ProtectedRoute";
 
-        <Route
-          path="/student"
-          element={
-            <ProtectedRoute role="student">
-              <StudentDashboard />
-            </ProtectedRoute>
-          }
-        />
 
-        {/* FALLBACK (invalid routes) */}
-        <Route path="*" element={<Navigate to="/login" />} />
 
-      </Routes>
+function App(){
 
-    </BrowserRouter>
-  );
+
+return(
+
+
+<BrowserRouter>
+
+
+<Routes>
+
+
+<Route
+
+path="/login"
+
+element={<Login/>}
+
+/>
+
+
+
+<Route
+
+path="/admin"
+
+element={
+
+<ProtectedRoute role="admin">
+
+<AdminDashboard/>
+
+</ProtectedRoute>
+
 }
+
+/>
+
+
+
+
+<Route
+
+path="/teacher"
+
+element={
+
+<ProtectedRoute role="teacher">
+
+<TeacherDashboard/>
+
+</ProtectedRoute>
+
+}
+
+/>
+
+
+
+
+<Route
+
+path="/student"
+
+element={
+
+<ProtectedRoute role="student">
+
+<StudentDashboard/>
+
+</ProtectedRoute>
+
+}
+
+/>
+
+
+
+</Routes>
+
+
+</BrowserRouter>
+
+
+)
+
+
+}
+
 
 export default App;
