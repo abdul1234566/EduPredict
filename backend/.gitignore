@@ -4,7 +4,7 @@ __pycache__/
 venv/
 .venv/
 
-models/*.pkl
+ml_models/*.pkl
 
 .idea/
 .vscode/
