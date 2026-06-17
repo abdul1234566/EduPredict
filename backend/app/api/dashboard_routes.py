@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session
 
 from app.core.database import get_db
 
-from app.models.database_models import Prediction, User
+from app.models.database_models import Prediction
 
 from app.auth.dependencies import get_current_user
 
@@ -17,21 +17,22 @@ router = APIRouter(
 
 
 
-
-
 # =====================================
 # GET ALL PREDICTION HISTORY
-# ADMIN + TEACHER ONLY
 # =====================================
 
 @router.get("/predictions")
 def get_predictions(
+
     db: Session = Depends(get_db),
-    current_user: User = Depends(get_current_user)
+
+    current_user = Depends(get_current_user)
+
 ):
 
 
-    if current_user.role not in ["admin", "teacher"]:
+    if current_user["role"] not in ["admin","teacher"]:
+
         raise HTTPException(
             status_code=403,
             detail="Access denied"
@@ -40,11 +41,15 @@ def get_predictions(
 
 
     records = (
+
         db.query(Prediction)
+
         .order_by(
             Prediction.created_at.desc()
         )
+
         .all()
+
     )
 
 
@@ -54,9 +59,9 @@ def get_predictions(
 
 
 
+
 # =====================================
-# DASHBOARD STATISTICS
-# ADMIN + TEACHER
+# DASHBOARD STATS
 # =====================================
 
 @router.get("/stats")
@@ -64,12 +69,12 @@ def dashboard_stats(
 
     db: Session = Depends(get_db),
 
-    current_user: User = Depends(get_current_user)
+    current_user = Depends(get_current_user)
 
 ):
 
 
-    if current_user.role not in ["admin", "teacher"]:
+    if current_user["role"] not in ["admin","teacher"]:
 
         raise HTTPException(
             status_code=403,
@@ -78,36 +83,48 @@ def dashboard_stats(
 
 
 
-    total = (
-        db.query(Prediction)
-        .count()
-    )
+    total = db.query(Prediction).count()
+
 
 
     high = (
+
         db.query(Prediction)
+
         .filter(
             Prediction.risk_level=="HIGH"
         )
+
         .count()
+
     )
+
 
 
     medium = (
+
         db.query(Prediction)
+
         .filter(
             Prediction.risk_level=="MEDIUM"
         )
+
         .count()
+
     )
 
 
+
     low = (
+
         db.query(Prediction)
+
         .filter(
             Prediction.risk_level=="LOW"
         )
+
         .count()
+
     )
 
 
@@ -115,16 +132,16 @@ def dashboard_stats(
     return {
 
 
-        "total_predictions": total,
+        "total_predictions":total,
 
 
-        "high_risk": high,
+        "high_risk":high,
 
 
-        "medium_risk": medium,
+        "medium_risk":medium,
 
 
-        "low_risk": low
+        "low_risk":low
 
 
     }
@@ -134,27 +151,30 @@ def dashboard_stats(
 
 
 # =====================================
-# RISK TREND DATA
-# ADMIN + TEACHER
+# TREND DATA
 # =====================================
-
 
 @router.get("/trends")
 def risk_trends(
 
     db: Session = Depends(get_db),
 
-    current_user: User = Depends(get_current_user)
+    current_user = Depends(get_current_user)
 
 ):
 
 
-    if current_user.role not in ["admin","teacher"]:
+    if current_user["role"] not in ["admin","teacher"]:
+
 
         raise HTTPException(
+
             status_code=403,
+
             detail="Access denied"
+
         )
+
 
 
 
@@ -194,14 +214,11 @@ def risk_trends(
                 trends[date] = {
 
 
-                    "date": date,
-
+                    "date":date,
 
                     "total":0,
 
-
                     "at_risk":0,
-
 
                     "safe":0
 
@@ -218,16 +235,12 @@ def risk_trends(
 
             if item.prediction == "AT RISK":
 
-
                 trends[date]["at_risk"] += 1
-
 
 
             else:
 
-
                 trends[date]["safe"] += 1
-
 
 
 
@@ -238,27 +251,32 @@ def risk_trends(
 
 
 
-# =====================================
-# STUDENT PERSONAL DASHBOARD
-# =====================================
 
+# =====================================
+# STUDENT OWN PREDICTIONS
+# =====================================
 
 @router.get("/my-predictions")
 def my_predictions(
 
     db: Session = Depends(get_db),
 
-    current_user: User = Depends(get_current_user)
+    current_user = Depends(get_current_user)
 
 ):
 
 
-    if current_user.role != "student":
+    if current_user["role"] != "student":
+
 
         raise HTTPException(
+
             status_code=403,
+
             detail="Students only"
+
         )
+
 
 
 
@@ -267,11 +285,15 @@ def my_predictions(
         db.query(Prediction)
 
         .filter(
-            Prediction.student_id == current_user.id
+
+            Prediction.student_id == current_user["id"]
+
         )
 
         .order_by(
+
             Prediction.created_at.desc()
+
         )
 
         .all()

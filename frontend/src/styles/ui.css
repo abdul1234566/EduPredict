@@ -1,0 +1,282 @@
+.card {
+  padding: 15px;
+  border-radius: 10px;
+  background: white;
+  border: 1px solid #ddd;
+  margin: 10px 0;
+}
+
+.btn-primary {
+  background: #111;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.btn-danger {
+  background: red;
+  color: white;
+}
+
+.safe {
+  color: green;
+  font-weight: bold;
+}
+
+.medium {
+  color: orange;
+  font-weight: bold;
+}
+
+.high {
+  color: red;
+  font-weight: bold;
+}
+html, body, #root {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background: #0f172a !important;
+  overflow-x: hidden !important;
+}
+
+.layout{
+
+display:flex;
+
+min-height:100vh;
+
+background:#0b1220;
+
+}
+
+
+
+.sidebar{
+
+width:240px;
+
+height:100vh;
+
+position:fixed;
+
+left:0;
+
+top:0;
+
+background:#0f172a;
+
+padding:20px;
+
+border-right:1px solid #1f2937;
+
+z-index:1000;
+
+box-sizing:border-box;
+
+}
+
+
+
+.main{
+
+margin-left:240px;
+
+width:calc(100% - 240px);
+
+min-height:100vh;
+
+}
+
+
+
+.topbar{
+
+height:60px;
+
+background:#111827;
+
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
+padding:0 20px;
+
+color:white;
+
+box-sizing:border-box;
+
+}
+
+
+
+.top-actions{
+
+display:flex;
+
+align-items:center;
+
+gap:15px;
+
+}
+
+
+
+.logout{
+
+background:#ef4444;
+
+border:none;
+
+color:white;
+
+padding:8px 15px;
+
+border-radius:8px;
+
+cursor:pointer;
+
+}
+
+
+
+.content{
+
+padding:20px;
+
+}
+
+
+
+.menu{
+
+display:flex;
+
+flex-direction:column;
+
+gap:10px;
+
+}
+
+
+
+.link{
+
+padding:12px;
+
+color:white;
+
+text-decoration:none;
+
+border-radius:8px;
+
+}
+
+
+
+.active{
+
+background:#1f2937;
+
+}
+
+
+
+.hamburger{
+
+display:none;
+
+background:none;
+
+border:none;
+
+color:white;
+
+font-size:24px;
+
+}
+
+
+
+
+/* MOBILE */
+
+
+@media(max-width:768px){
+
+
+.sidebar{
+
+
+transform:translateX(-100%);
+
+transition:.3s;
+
+
+}
+
+
+
+.sidebar.open{
+
+
+transform:translateX(0);
+
+
+}
+
+
+
+.main{
+
+
+margin-left:0;
+
+width:100%;
+
+
+}
+
+
+
+.hamburger{
+
+
+display:block;
+
+
+}
+
+
+
+.overlay{
+
+
+position:fixed;
+
+inset:0;
+
+background:rgba(0,0,0,.5);
+
+z-index:900;
+
+
+}
+
+
+
+.content{
+
+
+padding:12px;
+
+
+}
+
+
+}

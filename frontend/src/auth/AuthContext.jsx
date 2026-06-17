@@ -1,112 +1,64 @@
-import {
-createContext,
-useContext,
-useState
-}
-from "react";
+import { createContext, useContext, useState, useEffect } from "react";
+import { jwtDecode } from "jwt-decode";
 
+const AuthContext = createContext();
 
-import {jwtDecode} from "jwt-decode";
+export function AuthProvider({ children }) {
+  const [user, setUser] = useState(null);
 
+  // Load user on app start
+  useEffect(() => {
+    const token = localStorage.getItem("token");
 
-const AuthContext=createContext();
+    if (!token) return;
 
+    try {
+      const decoded = jwtDecode(token);
+      setUser(decoded);
+    } catch (err) {
+      console.log("Invalid token");
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+      setUser(null);
+    }
+  }, []);
 
+  const login = (data) => {
+    localStorage.setItem("token", data.access_token);
 
-export function AuthProvider({children}){
+    const decoded = jwtDecode(data.access_token);
 
+    localStorage.setItem("user", JSON.stringify(decoded));
 
-const [user,setUser]=useState(()=>{
+    setUser(decoded);
+  };
 
+  const logout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
 
-const token=localStorage.getItem("token");
+    setUser(null);
 
+    // force full UI reset behavior (important fix)
+    window.location.href = "/login";
+  };
 
-if(!token)
-return null;
+  const isAuthenticated = !!user;
 
-
-return jwtDecode(token);
-
-
-});
-
-
-
-
-const login=(data)=>{
-
-
-localStorage.setItem(
-"token",
-data.access_token
-);
-
-
-
-const decoded=jwtDecode(
-data.access_token
-);
-
-
-
-localStorage.setItem(
-"user",
-JSON.stringify(decoded)
-);
-
-
-
-setUser(decoded);
-
-
-};
-
-
-
-
-const logout=()=>{
-
-
-localStorage.removeItem("token");
-
-localStorage.removeItem("user");
-
-
-setUser(null);
-
-
-};
-
-
-
-
-
-return(
-
-<AuthContext.Provider
-
-value={{
-user,
-login,
-logout
-}}
-
->
-
-{children}
-
-</AuthContext.Provider>
-
-
-)
-
+  return (
+    <AuthContext.Provider
+      value={{
+        user,
+        login,
+        logout,
+        isAuthenticated
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
 }
 
-
-
-export function useAuth(){
-
-return useContext(AuthContext);
-
+export function useAuth() {
+  return useContext(AuthContext);
 }

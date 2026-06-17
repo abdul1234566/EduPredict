@@ -1,9 +1,8 @@
 import {
-BrowserRouter,
-Routes,
-Route
-}
-from "react-router-dom";
+  BrowserRouter,
+  Routes,
+  Route
+} from "react-router-dom";
 
 
 import Login from "./pages/Login";
@@ -29,91 +28,113 @@ from "./components/ProtectedRoute";
 function App(){
 
 
-return(
+  return(
+
+ <div style={{ minHeight: "100vh", width: "100vw", background: "#0f172a" }}>
+    <BrowserRouter>
 
 
-<BrowserRouter>
+      <Routes>
 
 
-<Routes>
+        {/* LOGIN */}
+
+        <Route
+
+          path="/login"
+
+          element={<Login/>}
+
+        />
 
 
-<Route
 
-path="/login"
+        {/* ADMIN */}
 
-element={<Login/>}
+        <Route
 
-/>
+          path="/admin"
+
+          element={
+
+            <ProtectedRoute role="admin">
+
+              <AdminDashboard/>
+
+            </ProtectedRoute>
+
+          }
+
+        />
 
 
 
-<Route
 
-path="/admin"
+        {/* TEACHER */}
 
-element={
+        <Route
 
-<ProtectedRoute role="admin">
+          path="/teacher"
 
-<AdminDashboard/>
+          element={
 
-</ProtectedRoute>
+            <ProtectedRoute role="teacher">
+
+              <TeacherDashboard/>
+
+            </ProtectedRoute>
+
+          }
+
+        />
+
+
+
+
+        {/* STUDENT */}
+
+        <Route
+
+          path="/student"
+
+          element={
+
+            <ProtectedRoute role="student">
+
+              <StudentDashboard/>
+
+            </ProtectedRoute>
+
+          }
+
+        />
+
+
+
+
+        {/* ANY UNKNOWN URL */}
+
+        <Route
+
+          path="*"
+
+          element={<Login/>}
+
+        />
+
+
+
+      </Routes>
+
+
+    </BrowserRouter>
+ </div>
+
+  )
+
 
 }
 
-/>
-
-
-
-
-<Route
-
-path="/teacher"
-
-element={
-
-<ProtectedRoute role="teacher">
-
-<TeacherDashboard/>
-
-</ProtectedRoute>
-
-}
-
-/>
-
-
-
-
-<Route
-
-path="/student"
-
-element={
-
-<ProtectedRoute role="student">
-
-<StudentDashboard/>
-
-</ProtectedRoute>
-
-}
-
-/>
-
-
-
-</Routes>
-
-
-</BrowserRouter>
-
-
-)
-
-
-}
 
 
 export default App;

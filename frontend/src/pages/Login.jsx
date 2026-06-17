@@ -2,176 +2,131 @@ import { useState } from "react";
 import { loginUser } from "../api/api";
 import { useAuth } from "../auth/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+export default function Login() {
+  const { login } = useAuth();
+  const navigate = useNavigate();
 
+  const [form, setForm] = useState({
+    email: "",
+    password: ""
+  });
 
-export default function Login(){
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
 
-const {login} = useAuth();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError("");
 
-const navigate = useNavigate();
+    try {
+      const res = await loginUser(form);
+      login(res.data);
 
+      const role = res.data.role;
 
-const [form,setForm]=useState({
+      if (role === "admin") navigate("/admin");
+      else if (role === "teacher") navigate("/teacher");
+      else navigate("/student");
 
-email:"",
-password:""
+    } catch (err) {
+      toast.error("Invalid email or password");
+    } finally {
+      setLoading(false);
+    }
+  };
 
-});
+  return (
+    <div style={styles.wrapper}>
+      <div style={styles.card}>
+        <h1 style={styles.title}>EduPredict</h1>
+        <p style={styles.subtitle}>AI Student Risk Platform</p>
 
+        {error && <div style={styles.error}>{error}</div>}
 
-const [error,setError]=useState("");
+        <form onSubmit={handleSubmit} style={styles.form}>
+          <input
+            name="email"
+            placeholder="Email"
+            value={form.email}
+            onChange={handleChange}
+            style={styles.input}
+          />
 
+          <input
+            name="password"
+            type="password"
+            placeholder="Password"
+            value={form.password}
+            onChange={handleChange}
+            style={styles.input}
+          />
 
+          <button style={styles.button} disabled={loading}>
+            {loading ? "Logging in..." : "Login"}
+          </button>
+        </form>
+      </div>
+    </div>
+  );
+}
 
-const handleChange=(e)=>{
-
-setForm({
-
-...form,
-
-[e.target.name]:e.target.value
-
-});
-
+const styles = {
+  wrapper: {
+    height: "100vh",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    background: "linear-gradient(135deg, #0f172a, #1e293b)"
+  },
+  card: {
+    width: "380px",
+    padding: "30px",
+    borderRadius: "16px",
+    background: "#111827",
+    color: "white",
+    boxShadow: "0 20px 60px rgba(0,0,0,0.4)"
+  },
+  title: {
+    textAlign: "center",
+    marginBottom: "5px"
+  },
+  subtitle: {
+    textAlign: "center",
+    color: "#9ca3af",
+    marginBottom: "20px"
+  },
+  form: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "12px"
+  },
+  input: {
+    padding: "12px",
+    borderRadius: "8px",
+    border: "1px solid #374151",
+    background: "#0b1220",
+    color: "white"
+  },
+  button: {
+    padding: "12px",
+    borderRadius: "8px",
+    border: "none",
+    background: "#3b82f6",
+    color: "white",
+    cursor: "pointer",
+    fontWeight: "bold"
+  },
+  error: {
+    background: "#7f1d1d",
+    color: "white",
+    padding: "10px",
+    borderRadius: "8px",
+    marginBottom: "10px"
+  }
 };
-
-
-
-const handleSubmit=async(e)=>{
-
-e.preventDefault();
-
-
-try{
-
-
-const res = await loginUser(form);
-
-
-
-login(res.data);
-
-
-
-if(res.data.role==="admin"){
-
-navigate("/admin");
-
-}
-
-else if(res.data.role==="teacher"){
-
-navigate("/teacher");
-
-}
-
-else if(res.data.role==="student"){
-
-navigate("/student");
-
-}
-
-
-
-}
-catch(err){
-
-console.log(err);
-
-setError(
-"Invalid email or password"
-);
-
-
-}
-
-
-
-};
-
-
-
-return (
-
-<div
-style={{
-width:"350px",
-margin:"100px auto",
-padding:"20px",
-border:"1px solid #ddd",
-borderRadius:"10px"
-}}
->
-
-
-<h2>
-EduPredict Login
-</h2>
-
-
-
-{
-error &&
-
-<p style={{color:"red"}}>
-
-{error}
-
-</p>
-
-}
-
-
-
-<form onSubmit={handleSubmit}>
-
-
-<input
-
-name="email"
-
-placeholder="Email"
-
-value={form.email}
-
-onChange={handleChange}
-
-/>
-
-
-
-<input
-
-name="password"
-
-type="password"
-
-placeholder="Password"
-
-value={form.password}
-
-onChange={handleChange}
-
-/>
-
-
-
-<button>
-
-Login
-
-</button>
-
-
-</form>
-
-
-
-</div>
-
-
-)
-
-
-}
