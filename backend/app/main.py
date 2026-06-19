@@ -8,6 +8,10 @@ from app.models import database_models
 from app.api.routes import router
 from app.api.dashboard_routes import router as dashboard_router
 from app.api.auth_routes import router as auth_router
+from app.api.user_routes import router as user_router
+from app.api.admin_routes import router as admin_router
+from app.api.student_routes import router as student_router
+from app.api.teacher_routes import router as teacher_router
 
 # =========================
 # DATABASE TABLE CREATION
@@ -65,6 +69,21 @@ app.include_router(
     dashboard_router
 )
 
+app.include_router(
+    user_router
+)
+
+app.include_router(
+    admin_router
+)
+
+app.include_router(
+    student_router
+)
+
+app.include_router(
+    teacher_router
+)
 
 # =========================
 # HOME TEST ROUTE

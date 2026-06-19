@@ -61,27 +61,29 @@ class Student(Base):
     )
 
 
+    user_id = Column(
+        Integer,
+        ForeignKey("users.id"),
+        unique=True
+    )
+
+
     student_name = Column(
         String(100),
         nullable=False
     )
 
 
-    age = Column(
-        Integer
-    )
+    age = Column(Integer)
 
 
-    gender = Column(
-        String(20)
-    )
+    gender = Column(String(20))
 
 
     created_at = Column(
         DateTime,
         server_default=func.now()
     )
-
 
 
 # ==========================
@@ -143,7 +145,8 @@ class Alert(Base):
 
 
     student_id = Column(
-        Integer
+        Integer,
+        ForeignKey("students.id")
     )
 
 
@@ -154,7 +157,7 @@ class Alert(Base):
 
     status = Column(
         String(50),
-        default="pending"
+        default="unread"
     )
 
 
@@ -180,8 +183,15 @@ class Feedback(Base):
     )
 
 
-    user_id = Column(
-        Integer
+    student_id = Column(
+        Integer,
+        ForeignKey("students.id")
+    )
+
+
+    teacher_id = Column(
+        Integer,
+        ForeignKey("users.id")
     )
 
 

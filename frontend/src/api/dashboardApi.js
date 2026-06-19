@@ -3,41 +3,50 @@ import axios from "axios";
 
 const API = axios.create({
 
-baseURL:"http://127.0.0.1:8000"
+    baseURL: "http://127.0.0.1:8000"
 
 });
 
 
+
+// Attach JWT token automatically
 API.interceptors.request.use(
 
-(config)=>{
+    (config)=>{
 
 
-const token = localStorage.getItem("token");
+        const token = localStorage.getItem("token");
 
 
-if(token){
+        if(token){
 
-config.headers.Authorization =
-`Bearer ${token}`;
+            config.headers.Authorization =
+            `Bearer ${token}`;
 
-}
-
-
-return config;
+        }
 
 
-}
+        return config;
+
+
+    }
 
 );
 
+
+
+
+
+// ==========================
+// ADMIN + TEACHER DASHBOARD
+// ==========================
 
 
 export const getStats = ()=>{
 
-return API.get(
-"/dashboard/stats"
-);
+    return API.get(
+        "/dashboard/stats"
+    );
 
 };
 
@@ -45,11 +54,9 @@ return API.get(
 
 export const getPredictions = ()=>{
 
-
-return API.get(
-"/dashboard/predictions"
-);
-
+    return API.get(
+        "/dashboard/predictions"
+    );
 
 };
 
@@ -57,18 +64,33 @@ return API.get(
 
 export const getTrends = ()=>{
 
-
-return API.get(
-"/dashboard/trends"
-);
-
-export const getMyPredictions = () => {
-
-return api.get(
-"/dashboard/my-predictions"
-);
+    return API.get(
+        "/dashboard/trends"
+    );
 
 };
 
 
+
+
+
+// ==========================
+// STUDENT DASHBOARD
+// ==========================
+
+
+export const getMyPredictions = ()=>{
+
+
+    return API.get(
+        "/dashboard/my-predictions"
+    );
+
+
 };
+
+
+
+
+
+export default API;

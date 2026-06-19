@@ -1,7 +1,6 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Request
 
 from sqlalchemy.orm import Session
-
 
 from app.core.database import get_db
 
@@ -22,20 +21,57 @@ router = APIRouter(
 
 
 
-
 @router.post("/login")
-
-
-def login(
-    data:LoginRequest,
-    db:Session=Depends(get_db)
+async def login(
+    request: Request,
+    db: Session = Depends(get_db)
 ):
+
+
+    content_type = request.headers.get(
+        "content-type",
+        ""
+    )
+
+
+
+    # =========================
+    # FRONTEND REACT LOGIN
+    # =========================
+
+    if "application/json" in content_type:
+
+
+        body = await request.json()
+
+
+        email = body.get("email")
+
+        password = body.get("password")
+
+
+
+    # =========================
+    # SWAGGER LOGIN
+    # =========================
+
+    else:
+
+
+        form = await request.form()
+
+
+        email = form.get("username")
+
+        password = form.get("password")
+
+
 
 
     user = (
         db.query(User)
         .filter(
-            User.email==data.email
+            User.email == email
         )
         .first()
     )
@@ -44,40 +80,68 @@ def login(
 
     if not user:
 
+
         raise HTTPException(
+
             status_code=401,
+
             detail="Invalid credentials"
+
         )
+
+
 
 
 
     if not verify_password(
-        data.password,
+
+        password,
+
         user.password
+
     ):
 
+
         raise HTTPException(
+
             status_code=401,
+
             detail="Invalid credentials"
+
         )
 
 
 
+
+
     token = create_token(
+
         {
-            "id":user.id,
-            "role":user.role,
-            "email":user.email
+
+            "id": user.id,
+
+            "role": user.role,
+
+            "email": user.email
+
         }
+
     )
+
+
+
 
 
     return {
 
-        "access_token":token,
 
-        "token_type":"bearer",
+        "access_token": token,
 
-        "role":user.role
+
+        "token_type": "bearer",
+
+
+        "role": user.role
+
 
     }

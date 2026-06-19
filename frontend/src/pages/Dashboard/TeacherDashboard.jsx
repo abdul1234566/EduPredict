@@ -1,96 +1,281 @@
-import Navbar from "../../components/Navbar";
 import PredictForm from "../../components/PredictForm";
 import ResultCard from "../../components/ResultCard";
-import { getPredictions } from "../../api/dashboardApi";
-import { useEffect, useState } from "react";
+
+import {
+  getPredictions
+} from "../../api/dashboardApi";
+
+
+import {
+  useEffect,
+  useState
+} from "react";
+
+
+import MainLayout from "../../layouts/MainLayout";
+
+
 
 export default function TeacherDashboard() {
-  const [result, setResult] = useState(null);
-  const [history, setHistory] = useState([]);
-  const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    loadHistory();
-  }, []);
 
-  const loadHistory = async () => {
-    try {
-      const res = await getPredictions();
-      setHistory(res.data);
-    } catch (err) {
-      console.log(err);
-    } finally {
-      setLoading(false);
-    }
-  };
+const [result,setResult]=useState(null);
 
-  return (
-    <div style={{ minHeight: "100vh", background: "#0f172a", color: "white" }}>
-      <Navbar />
+const [history,setHistory]=useState([]);
 
-      <div style={{ padding: "30px" }}>
-        <h1 style={{ marginBottom: 20 }}>Teacher Dashboard</h1>
+const [loading,setLoading]=useState(true);
 
-        {/* PREDICTION SECTION */}
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-          gap: "20px"
-        }}>
-          <div style={{
-            background: "#1e293b",
-            padding: 20,
-            borderRadius: 10
-          }}>
-            <PredictForm setResult={setResult} />
-          </div>
 
-          <div style={{
-            background: "#1e293b",
-            padding: 20,
-            borderRadius: 10
-          }}>
-            <ResultCard result={result} />
-          </div>
-        </div>
 
-        {/* HISTORY TABLE */}
-        <div style={{
-          overflowX: "auto",
-          marginTop: 30,
-          background: "#1e293b",
-          padding: 20,
-          borderRadius: 10
-        }}>
-          <h2 style={{ marginBottom: 15 }}>Prediction History</h2>
+useEffect(()=>{
 
-          {loading ? (
-            <p>Loading...</p>
-          ) : (
-            <table width="100%" style={{ color: "white" }}>
-              <thead>
-                <tr style={{ textAlign: "left" }}>
-                  <th>ID</th>
-                  <th>Prediction</th>
-                  <th>Risk</th>
-                  <th>Probability</th>
-                </tr>
-              </thead>
+loadHistory();
 
-              <tbody>
-                {history.map((h) => (
-                  <tr key={h.id}>
-                    <td>{h.id}</td>
-                    <td>{h.prediction}</td>
-                    <td>{h.risk_level}</td>
-                    <td>{h.risk_probability}%</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          )}
-        </div>
-      </div>
-    </div>
-  );
+},[]);
+
+
+
+const loadHistory=async()=>{
+
+
+try{
+
+
+const res=await getPredictions();
+
+setHistory(res.data);
+
+
+
+}
+catch(err){
+
+console.log(err);
+
+}
+
+finally{
+
+setLoading(false);
+
+}
+
+
+};
+
+
+
+
+return(
+
+
+<MainLayout>
+
+
+<div className="dashboard">
+
+
+<h1>
+Teacher Dashboard
+</h1>
+
+
+<p className="subtitle">
+Student prediction and risk analysis
+</p>
+
+
+
+
+{/* PREDICTION AREA */}
+
+
+<div
+style={{
+display:"grid",
+gridTemplateColumns:
+"repeat(auto-fit,minmax(300px,1fr))",
+gap:"20px",
+marginTop:"25px"
+}}
+>
+
+
+
+<div style={{
+background:"#1e293b",
+padding:"20px",
+borderRadius:"12px"
+}}>
+
+
+<PredictForm
+setResult={setResult}
+/>
+
+
+</div>
+
+
+
+
+<div style={{
+background:"#1e293b",
+padding:"20px",
+borderRadius:"12px"
+}}>
+
+
+<ResultCard
+result={result}
+/>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+{/* HISTORY */}
+
+
+
+<div className="table-box">
+
+
+<h2>
+Prediction History
+</h2>
+
+
+
+
+{
+loading ?
+
+
+<p>
+Loading...
+</p>
+
+
+:
+
+
+<div style={{overflowX:"auto"}}>
+
+
+<table>
+
+
+<thead>
+
+
+<tr>
+
+
+<th>
+ID
+</th>
+
+
+<th>
+Prediction
+</th>
+
+
+<th>
+Risk
+</th>
+
+
+<th>
+Probability
+</th>
+
+
+</tr>
+
+
+</thead>
+
+
+
+
+<tbody>
+
+
+{
+
+history.map(h=>(
+
+
+<tr key={h.id}>
+
+
+<td>
+{h.id}
+</td>
+
+
+<td>
+{h.prediction}
+</td>
+
+
+<td>
+{h.risk_level}
+</td>
+
+
+<td>
+{h.risk_probability}%
+</td>
+
+
+
+</tr>
+
+
+
+))
+
+}
+
+
+
+</tbody>
+
+
+</table>
+
+
+</div>
+
+
+}
+
+
+
+</div>
+
+
+
+
+
+
+</div>
+
+
+</MainLayout>
+
+
+)
+
 }

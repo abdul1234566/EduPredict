@@ -23,7 +23,14 @@ from "./pages/Dashboard/StudentDashboard";
 import ProtectedRoute 
 from "./components/ProtectedRoute";
 
+import UserManagement 
+from "./pages/UserManagement";
 
+import StudentProfile 
+from "./pages/StudentProfile";
+
+import TeacherStudents 
+from "./pages/TeacherStudents";
 
 function App(){
 
@@ -67,6 +74,21 @@ function App(){
 
         />
 
+        <Route
+
+path="/admin/users"
+
+element={
+
+<ProtectedRoute role="admin">
+
+<UserManagement/>
+
+</ProtectedRoute>
+
+}
+
+/>
 
 
 
@@ -74,42 +96,59 @@ function App(){
 
         <Route
 
-          path="/teacher"
+path="/teacher"
 
-          element={
+element={
 
-            <ProtectedRoute role="teacher">
+<ProtectedRoute role="teacher">
 
-              <TeacherDashboard/>
+<TeacherDashboard/>
 
-            </ProtectedRoute>
+</ProtectedRoute>
 
-          }
+}
 
-        />
-
-
+/>
 
 
-        {/* STUDENT */}
+<Route
 
-        <Route
+path="/teacher/students"
 
-          path="/student"
+element={
 
-          element={
+<ProtectedRoute role="teacher">
 
-            <ProtectedRoute role="student">
+<TeacherStudents/>
 
-              <StudentDashboard/>
+</ProtectedRoute>
 
-            </ProtectedRoute>
+}
 
-          }
+/>
 
-        />
+      {/* STUDENT DASHBOARD */}
+
+<Route
+  path="/student"
+  element={
+    <ProtectedRoute role="student">
+      <StudentDashboard />
+    </ProtectedRoute>
+  }
+/>
 
 
+{/* STUDENT PROFILE */}
+
+<Route
+  path="/student/profile"
+  element={
+    <ProtectedRoute role="student">
+      <StudentProfile />
+    </ProtectedRoute>
+  }
+/>
 
 
         {/* ANY UNKNOWN URL */}
