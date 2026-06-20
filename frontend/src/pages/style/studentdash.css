@@ -1,0 +1,141 @@
+/* =========================
+   EDUTHEME - STUDENT DASHBOARD
+   Dark Navy + Cyan Analytics UI
+========================= */
+
+/* =========================
+   GLOBAL EDUTHEME FONT LOCK
+========================= */
+
+.student-container,
+.student-container * {
+  font-family: "Segoe UI", Roboto, Arial, sans-serif !important;
+}
+.student-container {
+
+  padding: 25px;
+  background: #0b1220;
+  color: #e6f1ff;
+}
+
+/* TITLE */
+
+.student-title {
+  /* font-size: 2.2rem;
+  font-weight: 800; */
+  color: #00c2ff;
+  margin-bottom: 5px;
+}
+
+.student-subtitle {
+  color: #94a3b8;
+  margin-bottom: 25px;
+}
+
+/* GRID */
+
+.student-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+  margin-bottom: 25px;
+}
+
+/* CARD BASE */
+
+.student-card {
+  background: rgba(17, 28, 46, 0.65);
+  border: 1px solid rgba(0, 194, 255, 0.12);
+  border-radius: 14px;
+  padding: 20px;
+  margin-top: 20px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 12px rgba(0, 194, 255, 0.05);
+  transition: 0.3s ease;
+}
+
+.student-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 18px rgba(0, 194, 255, 0.2);
+}
+
+/* KPI COLORS */
+
+.kpi-primary {
+  border-left: 4px solid #00c2ff;
+}
+
+.kpi-danger {
+  border-left: 4px solid #ff4d4d;
+}
+
+.kpi-success {
+  border-left: 4px solid #00e6a7;
+}
+
+/* CHART */
+
+.chart-card {
+  margin-bottom: 25px;
+}
+
+.chart-card h2 {
+  color: #00c2ff;
+  margin-bottom: 15px;
+}
+
+/* TABLE */
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.student-table {
+  width: 100%;
+  border-collapse: collapse;
+  color: #e6f1ff;
+}
+
+.student-table th {
+  background: #111c2e;
+  color: #94a3b8;
+  padding: 12px;
+  text-align: left;
+}
+
+.student-table td {
+  padding: 12px;
+  border-bottom: 1px solid #1e2a3b;
+}
+
+.student-table tr:hover {
+  background: rgba(0, 194, 255, 0.05);
+}
+
+/* RECOMMENDATIONS */
+
+.recommendations {
+  margin-top: 10px;
+  padding-left: 18px;
+}
+
+.recommendations li {
+  margin-bottom: 8px;
+  color: #cbd5e1;
+}
+
+/* LOADING */
+
+.student-loading {
+  text-align: center;
+  padding: 50px;
+  color: #94a3b8;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+  .student-title {
+    font-size: 1.8rem;
+  }
+}

@@ -1,0 +1,194 @@
+/* =========================
+   EDU THEME - USER MANAGEMENT
+   Dark Blue + Cyan Glass UI
+========================= */
+
+.user-container {
+  padding: 25px;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #070b18, #0b1220);
+  color: #e6f1ff;
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* TITLE */
+.user-title {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #00c2ff;
+}
+
+/* CARD */
+.user-card {
+  background: rgba(17, 28, 46, 0.7);
+  border: 1px solid rgba(0, 194, 255, 0.12);
+  border-radius: 14px;
+  padding: 20px;
+  margin-bottom: 20px;
+  backdrop-filter: blur(12px);
+}
+
+/* GRID */
+.user-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  margin-top: 10px;
+}
+
+/* INPUTS */
+.user-input {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 194, 255, 0.15);
+  background: #0b1220;
+  color: #e6f1ff;
+  outline: none;
+}
+
+.user-input:focus {
+  border-color: #00c2ff;
+  box-shadow: 0 0 10px rgba(0, 194, 255, 0.2);
+}
+
+/* BUTTON */
+.primary-btn {
+  background: linear-gradient(90deg, #00c2ff, #3b82f6);
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* FILTER BAR */
+.filter-bar {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* =========================
+   TABLE FIX (IMPORTANT PART)
+========================= */
+
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 700px;
+}
+
+/* HEADER */
+.user-table thead {
+  background: rgba(0, 194, 255, 0.08);
+}
+
+.user-table th {
+  text-align: left;
+  padding: 14px;
+  font-size: 14px;
+  color: #94a3b8;
+  border-bottom: 1px solid rgba(0, 194, 255, 0.15);
+}
+
+/* ROW FIX (THIS FIXES YOUR ISSUE) */
+.user-table td {
+  padding: 14px;
+  border-bottom: 1px solid #1e2a3b;
+  color: #e6f1ff;
+  vertical-align: middle;
+  white-space: nowrap; /* IMPORTANT - prevents stacking */
+}
+
+/* ROW HOVER */
+.user-table tr:hover {
+  background: rgba(0, 194, 255, 0.06);
+}
+
+/* ROLE BADGES */
+.role {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+}
+
+.role.admin {
+  background: rgba(255, 80, 80, 0.15);
+  color: #ff4d4d;
+}
+
+.role.teacher {
+  background: rgba(0, 194, 255, 0.15);
+  color: #00c2ff;
+}
+
+.role.student {
+  background: rgba(0, 230, 167, 0.15);
+  color: #00e6a7;
+}
+
+/* ACTIONS */
+.action-row {
+  display: flex;
+  gap: 10px;
+}
+
+.edit-btn {
+  background: #00c2ff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  color: white;
+}
+
+.delete-btn {
+  background: #ff4d4d;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  color: white;
+}
+
+/* PAGINATION */
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 15px;
+  align-items: center;
+}
+
+.pagination button {
+  background: #00c2ff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  color: white;
+}
+
+/* MODAL */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  width: 380px;
+  background: #111c2e;
+  padding: 20px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
