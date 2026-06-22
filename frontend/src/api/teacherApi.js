@@ -1,22 +1,20 @@
-import axios from "axios";
+import API from "./axiosConfig";
 
 
 
 export const getStudents = () => {
 
-  return axios.get("/teacher/students");
+    return API.get("/teacher/students");
 
 };
 
 
 
+export const addFeedback = (student_id, data) => {
 
-
-export const addFeedback = (data) => {
-
-  return axios.post(
-    "/teacher/feedback",
-    data
-  );
+    return API.post(
+        `/teacher/feedback/${student_id}`,
+        data
+    );
 
 };

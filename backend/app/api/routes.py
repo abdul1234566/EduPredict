@@ -38,9 +38,20 @@ def predict(
 
 ):
 
+
+    data_dict = data.dict()
+
+
+    # IMPORTANT
+    # this should be student table id
+    # not teacher/user id
+    data_dict["student_id"] = data.student_id
+
+
+
     result = predict_student(
 
-        data.dict(),
+        data_dict,
 
         db
 

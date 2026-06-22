@@ -1,9 +1,11 @@
 import pandas as pd
 
-
 from app.utils.model_loader import model, features
 
-from app.models.database_models import Prediction
+from app.models.database_models import (
+    Prediction,
+    Alert
+)
 
 
 
@@ -47,7 +49,6 @@ def predict_student(data: dict, db):
     # RISK LEVEL
     # ==========================
 
-
     if risk_score < 30:
 
         level = "LOW"
@@ -73,7 +74,7 @@ def predict_student(data: dict, db):
 
 
         "risk_probability":
-            round(risk_score,2),
+            round(risk_score, 2),
 
 
         "risk_level":
@@ -84,15 +85,15 @@ def predict_student(data: dict, db):
 
 
     # ==========================
-    # SAVE PREDICTION
+    # SAVE PREDICTION + ALERT
     # ==========================
-
 
     try:
 
+
         record = Prediction(
 
-            student_id=None,
+            student_id=data["student_id"],
 
             prediction=result["prediction"],
 
@@ -105,11 +106,67 @@ def predict_student(data: dict, db):
         )
 
 
+
         db.add(record)
+
 
         db.commit()
 
+
         db.refresh(record)
+
+
+
+        # ==========================
+        # CREATE ALERT IF HIGH RISK
+        # ==========================
+
+
+        if result["risk_level"] == "HIGH":
+
+
+            # ==========================
+            # TEACHER ALERT
+            # ==========================
+
+            teacher_alert = Alert(
+
+                student_id=data["student_id"],
+
+                recipient_role="teacher",
+
+                message="Student is at high risk",
+
+                alert_type="RISK"
+
+            )
+
+
+
+            # ==========================
+            # STUDENT ALERT
+            # ==========================
+
+            student_alert = Alert(
+
+                student_id=data["student_id"],
+
+                recipient_role="student",
+
+                message="Your prediction shows a high risk level. Please check your dashboard.",
+
+                alert_type="RISK"
+
+            )
+
+
+
+            db.add(teacher_alert)
+
+            db.add(student_alert)
+
+
+            db.commit()
 
 
 
@@ -118,9 +175,13 @@ def predict_student(data: dict, db):
 
         db.rollback()
 
+
         print(
+
             "DATABASE SAVE ERROR:",
+
             e
+
         )
 
 

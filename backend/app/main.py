@@ -12,6 +12,7 @@ from app.api.user_routes import router as user_router
 from app.api.admin_routes import router as admin_router
 from app.api.student_routes import router as student_router
 from app.api.teacher_routes import router as teacher_router
+from app.api.alert_routes import router as alert_router
 
 # =========================
 # DATABASE TABLE CREATION
@@ -84,6 +85,12 @@ app.include_router(
 app.include_router(
     teacher_router
 )
+
+app.include_router(
+    alert_router
+)
+
+
 
 # =========================
 # HOME TEST ROUTE

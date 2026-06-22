@@ -6,6 +6,7 @@ from app.models.database_models import User, Student
 from app.auth.dependencies import get_current_user
 from app.models.database_models import Feedback
 
+
 router = APIRouter(
     prefix="/student",
     tags=["Student"]
@@ -121,7 +122,7 @@ def update_student_profile(
     }
 
 @router.get("/feedback")
-def get_feedback(
+def get_my_feedback(
 
     db:Session=Depends(get_db),
 
@@ -130,7 +131,16 @@ def get_feedback(
 ):
 
 
-    student=db.query(Student).filter(
+    if current_user["role"]!="student":
+
+        raise HTTPException(
+            status_code=403,
+            detail="Student only"
+        )
+
+
+
+    student = db.query(Student).filter(
         Student.user_id==current_user["id"]
     ).first()
 
@@ -139,15 +149,14 @@ def get_feedback(
     if not student:
 
         raise HTTPException(
-            status_code=404
+            status_code=404,
+            detail="Student not found"
         )
 
 
 
-    feedback=db.query(Feedback).filter(
+    feedback = db.query(Feedback).filter(
         Feedback.student_id==student.id
-    ).order_by(
-        Feedback.created_at.desc()
     ).all()
 
 

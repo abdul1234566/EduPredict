@@ -49,10 +49,9 @@ export default function TeacherStudent() {
     }
 
     try {
-      await addFeedback({
-        student_id: selected.id,   // FIXED (was wrong before)
-        message: feedback
-      });
+      await addFeedback(selected.id, {
+  message: feedback
+});
 
       toast.success("Feedback sent");
 

@@ -15,10 +15,8 @@ data
 
 };
 
-export const getFeedback =()=>{
+export const getMyFeedback = ()=>{
 
-return API.get(
-"/student/feedback"
-);
+    return API.get("/student/feedback");
 
 };

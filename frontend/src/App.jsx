@@ -32,6 +32,15 @@ from "./pages/StudentProfile";
 import TeacherStudents 
 from "./pages/TeacherStudents";
 
+import StudentFeedback
+from "./pages/StudentFeedback";
+
+import TeacherAlerts 
+from "./pages/TeacherAlerts";  
+
+import StudentAlerts
+from "./pages/StudentAlerts";
+
 function App(){
 
 
@@ -127,6 +136,17 @@ element={
 
 />
 
+<Route
+path="/teacher/alerts"
+element={
+<ProtectedRoute role="teacher">
+
+<TeacherAlerts/>
+
+</ProtectedRoute>
+}
+/>
+
       {/* STUDENT DASHBOARD */}
 
 <Route
@@ -148,6 +168,33 @@ element={
       <StudentProfile />
     </ProtectedRoute>
   }
+/>
+
+<Route
+
+path="/student/feedback"
+
+element={
+
+<ProtectedRoute role="student">
+
+<StudentFeedback/>
+
+</ProtectedRoute>
+
+}
+
+/>
+
+<Route
+path="/student/alerts"
+element={
+<ProtectedRoute role="student">
+
+<StudentAlerts/>
+
+</ProtectedRoute>
+}
 />
 
 

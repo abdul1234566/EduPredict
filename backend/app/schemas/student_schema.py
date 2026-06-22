@@ -3,6 +3,8 @@ from pydantic import BaseModel
 
 class StudentData(BaseModel):
 
+    student_id: int
+
     age: int
 
     failures: int

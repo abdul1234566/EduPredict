@@ -4,7 +4,10 @@ from sqlalchemy.orm import Session
 
 from app.core.database import get_db
 
-from app.models.database_models import Prediction
+from app.models.database_models import (
+    Prediction,
+    Student
+)
 
 from app.auth.dependencies import get_current_user
 
@@ -279,6 +282,31 @@ def my_predictions(
 
 
 
+    # find student profile using logged in user id
+
+    student = (
+
+        db.query(Student)
+
+        .filter(
+
+            Student.user_id == current_user["id"]
+
+        )
+
+        .first()
+
+    )
+
+
+
+    if not student:
+
+
+        return []
+
+
+
 
     records = (
 
@@ -286,7 +314,7 @@ def my_predictions(
 
         .filter(
 
-            Prediction.student_id == current_user["id"]
+            Prediction.student_id == student.id
 
         )
 

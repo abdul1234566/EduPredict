@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Float, DateTime, ForeignKey
+from sqlalchemy import Column, Integer, String, Float, DateTime, Boolean, ForeignKey
 from sqlalchemy.sql import func
 
 from app.core.database import Base
@@ -140,7 +140,8 @@ class Alert(Base):
 
     id = Column(
         Integer,
-        primary_key=True
+        primary_key=True,
+        index=True
     )
 
 
@@ -148,16 +149,26 @@ class Alert(Base):
         Integer,
         ForeignKey("students.id")
     )
+    
+    recipient_role = Column(
+        String(20)
+    )  # teacher/student
 
 
     message = Column(
-        String(255)
+        String
     )
 
 
-    status = Column(
-        String(50),
-        default="unread"
+    alert_type = Column(
+        String,
+        default="RISK"
+    )
+
+
+    is_read = Column(
+        Boolean,
+        default=False
     )
 
 
@@ -165,8 +176,6 @@ class Alert(Base):
         DateTime,
         server_default=func.now()
     )
-
-
 
 # ==========================
 # FEEDBACK TABLE
@@ -196,7 +205,8 @@ class Feedback(Base):
 
 
     message = Column(
-        String(500)
+        String(500),
+        nullable=False
     )
 
 
