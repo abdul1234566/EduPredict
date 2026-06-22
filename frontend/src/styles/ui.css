@@ -424,3 +424,32 @@ border-radius:8px;
 cursor:pointer;
 
 }
+.layout {
+  display: flex;
+  min-height: 100vh;
+  background: #0f172a;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  padding: 25px;
+}
+body {
+  margin: 0;
+  background: #0f172a;
+  color: white;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}

@@ -262,88 +262,50 @@ loading ?
 
 
 
-const styles={
-
-
-card:{
-
-background:"#111827",
-
-padding:20,
-
-borderRadius:12,
-
-color:"white"
-
-},
-
-
-grid:{
-
-display:"grid",
-
-gridTemplateColumns:
-"repeat(auto-fit,minmax(220px,1fr))",
-
-gap:15
-
-},
-
-
-label:{
-
-color:"#9ca3af",
-
-fontSize:12
-
-},
-
-
-input:{
-
-width:"100%",
-
-padding:10,
-
-borderRadius:6,
-
-background:"#0b1220",
-
-border:"1px solid #374151",
-
-color:"white"
-
-},
-
-
-button:{
-
-marginTop:20,
-
-padding:12,
-
-width:"100%",
-
-background:"#3b82f6",
-
-border:"none",
-
-borderRadius:8,
-
-color:"white",
-
-fontWeight:"bold"
-
-},
-
-
-form:{
-
-display:"flex",
-
-flexDirection:"column"
-
-}
-
-
-};
+const styles = {
+    card: {
+      background: "#111827",
+      padding: "20px",
+      borderRadius: "12px",
+      color: "white",
+      marginTop: "20px",
+      maxwidth: "100%",
+    },
+    title: {
+      marginBottom: "15px"
+    },
+    form: {
+      display: "flex",
+      flexDirection: "column"
+    },
+    grid: {
+      display: "grid",
+      gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+      gap: "15px"
+    },
+    field: {
+      display: "flex",
+      flexDirection: "column"
+    },
+    label: {
+      fontSize: "12px",
+      marginBottom: "5px",
+      color: "#9ca3af"
+    },
+    input: {
+      padding: "10px",
+      borderRadius: "6px",
+      border: "1px solid #374151",
+      background: "#0b1220",
+      color: "white"
+    },
+    button: {
+      marginTop: "20px",
+      padding: "12px",
+      border: "none",
+      borderRadius: "8px",
+      background: "#3b82f6",
+      color: "white",
+      fontWeight: "bold"
+    }
+  };

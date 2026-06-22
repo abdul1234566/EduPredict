@@ -1,0 +1,75 @@
+/* =========================
+   EDU PREDICT TEACHER DASHBOARD
+   SCSS VERSION (THEME EXTENSION)
+========================= */
+
+/* GRID 2 COLUMN */
+.dashboard-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .dashboard-grid-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* SELECT BOX */
+.dashboard-select {
+  width: 100%;
+  margin-top: 10px;
+  padding: 12px;
+  border-radius: 10px;
+  background: #0b1220;
+  color: #e6f1ff;
+  border: 1px solid rgba(0, 194, 255, 0.2);
+  outline: none;
+  transition: 0.3s ease;
+
+  &:focus {
+    border-color: #00c2ff;
+    box-shadow: 0 0 10px rgba(0, 194, 255, 0.2);
+  }
+}
+
+/* HEADER TEXT */
+.dashboard-subtitle {
+  color: #94a3b8;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+/* TABLE WRAPPER */
+.table-wrapper {
+  margin-top: 10px;
+  overflow-x: auto;
+}
+
+/* LOADING */
+.dashboard-loading {
+  color: #94a3b8;
+  padding: 20px;
+  text-align: center;
+}
+
+/* RISK BADGES (ENHANCED EDU STYLE) */
+.risk-high {
+  color: #ff4d4d;
+  font-weight: 600;
+  text-shadow: 0 0 8px rgba(255, 77, 77, 0.3);
+}
+
+.risk-medium {
+  color: #ffb020;
+  font-weight: 600;
+  text-shadow: 0 0 8px rgba(255, 176, 32, 0.25);
+}
+
+.risk-low {
+  color: #00e6a7;
+  font-weight: 600;
+  text-shadow: 0 0 8px rgba(0, 230, 167, 0.25);
+}

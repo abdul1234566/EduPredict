@@ -1,0 +1,174 @@
+/* =========================
+   EDU PREDICT DASHBOARD THEME
+   Dark + Teal Analytics UI
+========================= */
+
+/* GLOBAL */
+.dashboard-container {
+    font-family: "Segoe UI", Roboto, Arial, sans-serif !important;
+    padding: 25px;
+    background: #0b1220;
+    min-height: 100vh;
+    color: #e6f1ff;
+    font-family: "Segoe UI", sans-serif;
+  }
+  
+  /* TITLE */
+  .dashboard-title {
+      font-family: "Segoe UI", Roboto, Arial, sans-serif !important;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 25px;
+    color: #00c2ff;
+    letter-spacing: 1px;
+  }
+  
+  /* LOADING */
+  .dashboard-loading {
+    color: #94a3b8;
+    text-align: center;
+    padding: 40px;
+  }
+  
+  /* GRID */
+  .dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-bottom: 25px;
+  }
+  
+  /* =========================
+     KPI CARDS
+  ========================= */
+  .kpi-card {
+    padding: 20px;
+    border-radius: 14px;
+    background: rgba(17, 28, 46, 0.7);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 194, 255, 0.15);
+    transition: 0.3s ease;
+    box-shadow: 0 0 10px rgba(0, 194, 255, 0.08);
+  }
+  
+  .kpi-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0 18px rgba(0, 194, 255, 0.25);
+  }
+  
+  /* KPI TEXT */
+  .kpi-title {
+    font-size: 14px;
+    color: #94a3b8;
+  }
+  
+  .kpi-value {
+    font-size: 26px;
+    font-weight: bold;
+    margin-top: 10px;
+    color: #e6f1ff;
+  }
+  
+  /* CARD COLORS */
+  .kpi-primary {
+    border-left: 4px solid #00c2ff;
+  }
+  
+  .kpi-danger {
+    border-left: 4px solid #ff4d4d;
+  }
+  
+  .kpi-warning {
+    border-left: 4px solid #ffb020;
+  }
+  
+  .kpi-success {
+    border-left: 4px solid #00e6a7;
+  }
+  
+  /* =========================
+     DASHBOARD CARD (CHART + TABLE)
+  ========================= */
+  .dashboard-card {
+    background: rgba(17, 28, 46, 0.6);
+    border: 1px solid rgba(0, 194, 255, 0.12);
+    border-radius: 14px;
+    padding: 20px;
+    margin-bottom: 20px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 12px rgba(0, 194, 255, 0.05);
+  }
+  
+  .dashboard-card h3 {
+    color: #00c2ff;
+    margin-bottom: 15px;
+  }
+  
+  /* CHART */
+  .chart-container {
+    height: 320px;
+  }
+  
+  /* =========================
+     TABLE
+  ========================= */
+  .table-wrapper {
+    overflow-x: auto;
+  }
+  
+  .dashboard-table {
+    width: 100%;
+    border-collapse: collapse;
+    color: #e6f1ff;
+  }
+  
+  .dashboard-table th {
+    text-align: left;
+    padding: 12px;
+    background: #111c2e;
+    color: #94a3b8;
+    font-size: 14px;
+  }
+  
+  .dashboard-table td {
+    padding: 12px;
+    border-bottom: 1px solid #1e2a3b;
+  }
+  
+  /* ROW HOVER */
+  .dashboard-table tr:hover {
+    background: rgba(0, 194, 255, 0.05);
+  }
+  
+  /* =========================
+     RISK BADGES
+  ========================= */
+  .risk-high {
+    color: #ff4d4d;
+    font-weight: bold;
+  }
+  
+  .risk-medium {
+    color: #ffb020;
+    font-weight: bold;
+  }
+  
+  .risk-low {
+    color: #00e6a7;
+    font-weight: bold;
+  }
+  
+  /* =========================
+     RESPONSIVE
+  ========================= */
+  @media (max-width: 1024px) {
+    .dashboard-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 600px) {
+    .dashboard-grid {
+      grid-template-columns: 1fr;
+    }
+  }
