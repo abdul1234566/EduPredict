@@ -540,9 +540,17 @@
 import { useEffect, useState } from "react";
 import MainLayout from "../../layouts/MainLayout";
 import { getMyPredictions } from "../../api/dashboardApi";
+<<<<<<< HEAD
 import "../style/studentdash.css";
 
 import { Line } from "react-chartjs-2";
+=======
+
+import {
+  Line
+} from "react-chartjs-2";
+
+>>>>>>> 3a43a8f89ddd771ee56a3b3851630f76c1feb76d
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -552,6 +560,11 @@ import {
   Tooltip,
   Legend
 } from "chart.js";
+<<<<<<< HEAD
+=======
+
+import "../style/studentdash.css";
+>>>>>>> 3a43a8f89ddd771ee56a3b3851630f76c1feb76d
 
 ChartJS.register(
   CategoryScale,
@@ -585,10 +598,15 @@ export default function StudentDashboard() {
   if (loading) {
     return (
       <MainLayout>
+<<<<<<< HEAD
         <div className="dashboard-container">
           <div className="dashboard-loading">
             Loading student analytics...
           </div>
+=======
+        <div className="student-loading">
+          Loading student analytics...
+>>>>>>> 3a43a8f89ddd771ee56a3b3851630f76c1feb76d
         </div>
       </MainLayout>
     );
@@ -600,9 +618,13 @@ export default function StudentDashboard() {
     x => x.prediction === "AT RISK"
   ).length;
 
+<<<<<<< HEAD
   const safeCount = history.filter(
     x => x.prediction !== "AT RISK"
   ).length;
+=======
+  const safeCount = total - riskCount;
+>>>>>>> 3a43a8f89ddd771ee56a3b3851630f76c1feb76d
 
   const chartData = {
     labels: history.map(x => x.created_at?.split("T")[0]),
@@ -611,7 +633,11 @@ export default function StudentDashboard() {
         label: "Risk Probability",
         data: history.map(x => x.risk_probability),
         borderColor: "#00c2ff",
+<<<<<<< HEAD
         backgroundColor: "rgba(0,194,255,0.2)",
+=======
+        backgroundColor: "rgba(0,194,255,0.15)",
+>>>>>>> 3a43a8f89ddd771ee56a3b3851630f76c1feb76d
         tension: 0.4
       }
     ]
@@ -620,6 +646,7 @@ export default function StudentDashboard() {
   return (
     <MainLayout>
 
+<<<<<<< HEAD
       <div className="dashboard-container">
 
         {/* HEADER */}
@@ -646,11 +673,40 @@ export default function StudentDashboard() {
           <div className="kpi-card kpi-success">
             <div className="kpi-title">Safe Predictions</div>
             <div className="kpi-value">{safeCount}</div>
+=======
+      <div className="student-container">
+
+        <h1 className="student-title">
+          🎓 Student Dashboard
+        </h1>
+
+        <p className="student-subtitle">
+          Personal academic risk analytics powered by AI
+        </p>
+
+        {/* KPI CARDS */}
+        <div className="student-grid">
+
+          <div className="student-card kpi-primary">
+            <h3>Total Predictions</h3>
+            <h1>{total}</h1>
+          </div>
+
+          <div className="student-card kpi-danger">
+            <h3>Risk Alerts</h3>
+            <h1>{riskCount}</h1>
+          </div>
+
+          <div className="student-card kpi-success">
+            <h3>Safe Predictions</h3>
+            <h1>{safeCount}</h1>
+>>>>>>> 3a43a8f89ddd771ee56a3b3851630f76c1feb76d
           </div>
 
         </div>
 
         {/* CHART */}
+<<<<<<< HEAD
         <div className="dashboard-card">
           <h3>📈 Risk History</h3>
 
@@ -670,6 +726,20 @@ export default function StudentDashboard() {
           <div className="table-wrapper">
 
             <table className="dashboard-table">
+=======
+        <div className="student-card chart-card">
+          <h2>📊 Risk Trend Analysis</h2>
+          <Line data={chartData} />
+        </div>
+
+        {/* TABLE */}
+        <div className="student-card">
+          <h2>📋 Prediction History</h2>
+
+          <div className="table-wrapper">
+
+            <table className="student-table">
+>>>>>>> 3a43a8f89ddd771ee56a3b3851630f76c1feb76d
 
               <thead>
                 <tr>
@@ -684,6 +754,7 @@ export default function StudentDashboard() {
                 {history.map((item, index) => (
                   <tr key={index}>
                     <td>{item.prediction}</td>
+<<<<<<< HEAD
 
                     <td>
                       <span className={`risk-${item.risk_level?.toLowerCase()}`}>
@@ -691,6 +762,9 @@ export default function StudentDashboard() {
                       </span>
                     </td>
 
+=======
+                    <td>{item.risk_level}</td>
+>>>>>>> 3a43a8f89ddd771ee56a3b3851630f76c1feb76d
                     <td>{item.risk_probability}%</td>
                     <td>{item.created_at?.split("T")[0]}</td>
                   </tr>
@@ -703,6 +777,7 @@ export default function StudentDashboard() {
         </div>
 
         {/* RECOMMENDATIONS */}
+<<<<<<< HEAD
         <div className="dashboard-card">
           <h3>🤖 AI Recommendations</h3>
 
@@ -721,10 +796,37 @@ export default function StudentDashboard() {
               </>
             )}
           </ul>
+=======
+        <div className="student-card">
+          <h2>🤖 AI Recommendations</h2>
+
+          <ul className="recommendations">
+
+            {riskCount > 0 ? (
+              <>
+                <li>Improve attendance consistency</li>
+                <li>Focus on weak subjects</li>
+                <li>Reduce failed assessments</li>
+              </>
+            ) : (
+              <>
+                <li>Maintain current performance</li>
+                <li>Keep consistent study routine</li>
+                <li>Continue good attendance habits</li>
+              </>
+            )}
+
+          </ul>
+
+>>>>>>> 3a43a8f89ddd771ee56a3b3851630f76c1feb76d
         </div>
 
       </div>
 
     </MainLayout>
   );
+<<<<<<< HEAD
 }
+=======
+} 
+>>>>>>> 3a43a8f89ddd771ee56a3b3851630f76c1feb76d

@@ -1,0 +1,144 @@
+/* =========================
+   EDUTHEME TEACHER PAGE
+========================= */
+
+.teacher-container {
+  padding: 25px;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0b1220, #0f1b33);
+  font-family: "Segoe UI", sans-serif;
+  color: #e6f1ff;
+}
+
+/* TITLE */
+.teacher-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #00c2ff;
+}
+
+.teacher-subtitle {
+  color: #94a3b8;
+  margin-bottom: 20px;
+}
+
+/* CARD */
+.teacher-card {
+  background: rgba(17, 28, 46, 0.75);
+  border: 1px solid rgba(0, 194, 255, 0.15);
+  border-radius: 14px;
+  padding: 20px;
+  backdrop-filter: blur(10px);
+}
+
+/* TABLE */
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.teacher-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+  table-layout: fixed; /* FIX ALIGNMENT */
+}
+
+.teacher-table th,
+.teacher-table td {
+  padding: 14px;
+  text-align: left;
+  border-bottom: 1px solid #1e2a3b;
+  word-wrap: break-word;
+}
+
+.teacher-table th {
+  color: #94a3b8;
+}
+
+.teacher-table td {
+  color: #e6f1ff;
+}
+
+/* CENTER EMPTY ROW */
+.empty {
+  text-align: center;
+  padding: 20px;
+  color: #94a3b8;
+}
+
+/* BUTTONS */
+.primary-btn {
+  background: linear-gradient(90deg, #00c2ff, #3b82f6);
+  border: none;
+  padding: 8px 14px;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+}
+
+.primary-btn:hover {
+  box-shadow: 0 0 12px rgba(0, 194, 255, 0.3);
+}
+
+.danger-btn {
+  background: #ef4444;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+}
+
+/* OVERLAY CENTER FIX */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.2s ease;
+}
+
+/* MODAL CENTERED */
+.modal {
+  width: 420px;
+  background: rgba(15, 23, 42, 0.95);
+  border: 1px solid rgba(0, 194, 255, 0.25);
+  border-radius: 14px;
+  padding: 20px;
+  animation: pop 0.2s ease;
+}
+
+/* TEXTAREA */
+.textarea {
+  width: 100%;
+  height: 120px;
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #1e2a3b;
+  background: #0b1220;
+  color: white;
+  outline: none;
+}
+
+/* MODAL ACTIONS */
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* ANIMATIONS */
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+@keyframes pop {
+  from {transform: scale(0.9); opacity: 0;}
+  to {transform: scale(1); opacity: 1;}
+}

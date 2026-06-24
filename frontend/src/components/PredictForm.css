@@ -1,0 +1,101 @@
+.predict-form-card {
+  width: 100%;
+}
+
+.predict-form-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 20px;
+}
+
+.predict-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.predict-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.predict-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.predict-label {
+  margin-bottom: 8px;
+  color: #a5f3fc;
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.predict-input {
+  height: 48px;
+
+  border-radius: 14px;
+
+  border: 1px solid rgba(103,232,249,.15);
+
+  background: rgba(15,23,42,.7);
+
+  color: white;
+
+  padding: 0 14px;
+
+  outline: none;
+
+  transition: .25s;
+}
+
+.predict-input:focus {
+  border-color: #22d3ee;
+
+  box-shadow:
+    0 0 0 3px rgba(34,211,238,.12);
+}
+
+.predict-button {
+  margin-top: 25px;
+
+  height: 54px;
+
+  border: none;
+
+  border-radius: 16px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #14b8a6,
+      #06b6d4
+    );
+
+  color: white;
+
+  font-size: 15px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: .3s;
+}
+
+.predict-button:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 12px 25px rgba(6,182,212,.30);
+}
+
+@media (max-width:768px) {
+
+  .predict-grid {
+    grid-template-columns: 1fr;
+  }
+
+}

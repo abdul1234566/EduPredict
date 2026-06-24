@@ -1,0 +1,139 @@
+/* =========================
+   EDUTHEME STUDENT PROFILE
+========================= */
+/* FORCE EDUTHEME FONT (GLOBAL FOR THIS PAGE) */
+.sp-dashboard,
+.sp-dashboard * {
+  font-family: "Segoe UI", Roboto, Arial, sans-serif !important;
+}
+.sp-dashboard {
+  padding: 25px;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0b1220, #0f1b33);
+  color: #e6f1ff;
+}
+
+/* CARD */
+.sp-card {
+  background: rgba(17, 28, 46, 0.75);
+  border: 1px solid rgba(0, 194, 255, 0.15);
+  border-radius: 16px;
+  padding: 22px;
+  margin-top: 20px;
+  backdrop-filter: blur(12px);
+}
+
+/* ROW (NO ALIGNMENT CHANGE, ONLY STYLE) */
+.sp-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid #1e2a3b;
+}
+
+.sp-row span {
+  color: #94a3b8;
+}
+
+.sp-row b {
+  color: #e6f1ff;
+}
+
+/* BUTTON */
+.sp-btn {
+  margin-top: 20px;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 10px;
+
+  background: linear-gradient(90deg, #00c2ff, #3b82f6);
+  color: white;
+
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s ease;
+}
+
+.sp-btn:hover {
+  transform: translateY(-2px);
+}
+
+/* CANCEL */
+.sp-cancel {
+  margin-left: 10px;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 10px;
+
+  background: #ef4444;
+  color: white;
+  cursor: pointer;
+}
+
+/* INPUT */
+.sp-input {
+  width: 100%;
+  padding: 10px;
+  margin: 6px 0 14px;
+
+  background: #0b1220;
+  border: 1px solid #1e2a3b;
+  border-radius: 10px;
+
+  color: white;
+}
+
+/* MODAL BACKDROP (CENTER FIX + BLUR + FADE) */
+.sp-modal {
+  position: fixed;
+  inset: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(14px);
+
+  animation: fadeIn 0.25s ease;
+  z-index: 9999;
+}
+
+/* MODAL BOX (CENTERED PROPERLY) */
+.sp-modal-box {
+  width: 420px;
+  max-width: 92%;
+
+  background: rgba(15, 23, 42, 0.95);
+  border: 1px solid rgba(0, 194, 255, 0.2);
+  border-radius: 16px;
+
+  padding: 22px;
+  color: #e6f1ff;
+
+  animation: popIn 0.25s ease;
+}
+
+/* LOADING */
+.sp-loading {
+  color: #94a3b8;
+  text-align: center;
+  padding: 40px;
+}
+
+/* ANIMATIONS */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes popIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

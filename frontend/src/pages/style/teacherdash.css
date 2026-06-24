@@ -1,4 +1,5 @@
 /* =========================
+<<<<<<< HEAD
    EDU PREDICT TEACHER DASHBOARD
    SCSS VERSION (THEME EXTENSION)
 ========================= */
@@ -60,16 +61,161 @@
   color: #ff4d4d;
   font-weight: 600;
   text-shadow: 0 0 8px rgba(255, 77, 77, 0.3);
+=======
+   EDUTHEME - TEACHER DASHBOARD
+   Dark Navy + Cyan Glass UI
+========================= */
+
+.teacher-container {
+  min-height: 100vh;
+  padding: 25px;
+
+  background: #0b1220;
+  color: #e6f1ff;
+}
+
+/* HEADER */
+
+.teacher-header {
+  margin-bottom: 25px;
+}
+
+.teacher-title {
+  font-size: 2.3rem;
+  font-weight: 800;
+
+  color: #00c2ff;
+}
+
+.teacher-subtitle {
+  color: #94a3b8;
+  margin-top: 6px;
+}
+
+/* CARD BASE */
+
+.teacher-card {
+  background: rgba(17, 28, 46, 0.65);
+
+  border: 1px solid rgba(0, 194, 255, 0.12);
+
+  border-radius: 14px;
+
+  padding: 20px;
+
+  margin-bottom: 20px;
+
+  backdrop-filter: blur(10px);
+
+  box-shadow: 0 0 12px rgba(0, 194, 255, 0.05);
+
+  transition: 0.3s ease;
+}
+
+.teacher-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 18px rgba(0, 194, 255, 0.18);
+}
+
+/* SECTION HEADER */
+
+.section-header h2 {
+  color: #00c2ff;
+  margin-bottom: 5px;
+}
+
+.section-header p {
+  color: #94a3b8;
+  margin-bottom: 15px;
+}
+
+/* FORM CARD */
+
+.form-card {
+  border-left: 4px solid #00c2ff;
+}
+
+/* RESULT CARD */
+
+.result-card {
+  border-left: 4px solid #00e6a7;
+}
+
+/* HISTORY CARD */
+
+.history-card {
+  border-left: 4px solid #ffb020;
+}
+
+/* TABLE */
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.teacher-table {
+  width: 100%;
+  border-collapse: collapse;
+  color: #e6f1ff;
+}
+
+.teacher-table th {
+  background: #111c2e;
+  color: #94a3b8;
+  padding: 12px;
+  text-align: left;
+}
+
+.teacher-table td {
+  padding: 12px;
+  border-bottom: 1px solid #1e2a3b;
+}
+
+.teacher-table tr:hover {
+  background: rgba(0, 194, 255, 0.05);
+}
+
+/* RISK BADGES */
+
+.risk-high {
+  color: #ff4d4d;
+  font-weight: bold;
+>>>>>>> 3a43a8f89ddd771ee56a3b3851630f76c1feb76d
 }
 
 .risk-medium {
   color: #ffb020;
+<<<<<<< HEAD
   font-weight: 600;
   text-shadow: 0 0 8px rgba(255, 176, 32, 0.25);
+=======
+  font-weight: bold;
+>>>>>>> 3a43a8f89ddd771ee56a3b3851630f76c1feb76d
 }
 
 .risk-low {
   color: #00e6a7;
+<<<<<<< HEAD
   font-weight: 600;
   text-shadow: 0 0 8px rgba(0, 230, 167, 0.25);
 }
+=======
+  font-weight: bold;
+}
+
+/* LOADING */
+
+.loading-box {
+  padding: 40px;
+  text-align: center;
+  color: #94a3b8;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+  .teacher-title {
+    font-size: 1.8rem;
+  }
+}   
+>>>>>>> 3a43a8f89ddd771ee56a3b3851630f76c1feb76d

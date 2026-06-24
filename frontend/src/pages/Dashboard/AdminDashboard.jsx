@@ -207,9 +207,12 @@
 
 
 
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> 3a43a8f89ddd771ee56a3b3851630f76c1feb76d
 import { useEffect, useState } from "react";
 import { getStats, getPredictions, getTrends } from "../../api/dashboardApi";
 import MainLayout from "../../layouts/MainLayout";

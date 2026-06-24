@@ -3,6 +3,12 @@ import { useState } from "react";
 import { predictStudent } from "../api/api";
 
 import { toast } from "react-toastify";
+<<<<<<< HEAD
+=======
+import "./PredictForm.css";
+export default function PredictForm({ setResult }) {
+  const [loading, setLoading] = useState(false);
+>>>>>>> 3a43a8f89ddd771ee56a3b3851630f76c1feb76d
 
 
 

@@ -1,5 +1,6 @@
 // import { NavLink } from "react-router-dom";
 // import { getUser } from "../auth/auth";
+<<<<<<< HEAD
 // import { useEffect, useState } from "react";
 // import "./Sidebar.css";
 // import {
@@ -74,11 +75,19 @@
 
 //   };
 
+=======
+
+// export default function Sidebar({ open, setOpen }) {
+//   const user = getUser();
+//   const role = user?.role;
+
+>>>>>>> 3a43a8f89ddd771ee56a3b3851630f76c1feb76d
 //   const menu = {
 //     admin: [
 //       { name: "Dashboard", path: "/admin" },
 //       { name: "Users", path: "/admin/users" }
 //     ],
+<<<<<<< HEAD
 
 //     teacher: [
 //       { name: "Dashboard", path: "/teacher" },
@@ -91,10 +100,41 @@
 //       { name: "Teachers Feedback", path: "/student/feedback" },
 //       { name: "Alerts", path: "/student/alerts" }
 //     ]
+=======
+//     teacher:[
+
+// {
+// name:"Dashboard",
+// path:"/teacher"
+// },
+
+// {
+// name:"Students",
+// path:"/teacher/students"
+// },
+
+// {
+// name:"Feedback",
+// path:"/teacher/feedback"
+// }
+
+// ],
+//    student: [
+//   {
+//     name: "Dashboard",
+//     path: "/student"
+//   },
+//   {
+//     name: "Profile",
+//     path: "/student/profile"
+//   }
+// ]
+>>>>>>> 3a43a8f89ddd771ee56a3b3851630f76c1feb76d
 //   };
 
 //   return (
 //     <>
+<<<<<<< HEAD
 //       <div className={`sidebar ${open ? "open" : ""}`}>
 
 //         <h2 className="logo">EduPredict</h2>
@@ -186,6 +226,14 @@
 //         {/* MENU */}
 //         <div className="menu">
 //           {(menu[role] || []).map(item => (
+=======
+//       {/* SIDEBAR */}
+//       <div className={`sidebar ${open ? "open" : ""}`}>
+//         <h2 className="logo">EduPredict</h2>
+
+//         <div className="menu">
+//           {(menu[role] || []).map((item) => (
+>>>>>>> 3a43a8f89ddd771ee56a3b3851630f76c1feb76d
 //             <NavLink
 //               key={item.path}
 //               to={item.path}
@@ -198,9 +246,15 @@
 //             </NavLink>
 //           ))}
 //         </div>
+<<<<<<< HEAD
 
 //       </div>
 
+=======
+//       </div>
+
+//       {/* OVERLAY (mobile only) */}
+>>>>>>> 3a43a8f89ddd771ee56a3b3851630f76c1feb76d
 //       {open && (
 //         <div
 //           className="overlay"
@@ -215,6 +269,7 @@
 
 
 
+<<<<<<< HEAD
 
 import { NavLink, useNavigate } from "react-router-dom";
 import { getUser } from "../auth/auth";
@@ -227,6 +282,11 @@ import {
   markAlertRead
 } from "../api/alertApi";
 
+=======
+import { NavLink, useNavigate } from "react-router-dom";
+import { getUser } from "../auth/auth";
+import { useAuth } from "../auth/AuthContext";
+>>>>>>> 3a43a8f89ddd771ee56a3b3851630f76c1feb76d
 import "./Sidebar.css";
 
 export default function Sidebar({ open, setOpen }) {
@@ -237,6 +297,7 @@ export default function Sidebar({ open, setOpen }) {
   const { logout } = useAuth();
   const navigate = useNavigate();
 
+<<<<<<< HEAD
   const [alertCount, setAlertCount] = useState(0);
   const [alerts, setAlerts] = useState([]);
   const [showNotifications, setShowNotifications] = useState(false);
@@ -287,6 +348,8 @@ export default function Sidebar({ open, setOpen }) {
     }
   };
 
+=======
+>>>>>>> 3a43a8f89ddd771ee56a3b3851630f76c1feb76d
   const handleLogout = () => {
     logout();
     navigate("/login");
@@ -294,10 +357,11 @@ export default function Sidebar({ open, setOpen }) {
 
   const menu = {
     admin: [
-      { name: "Dashboard", path: "/admin" },
-      { name: "Users", path: "/admin/users" }
+      { name: "📊 Dashboard", path: "/admin" },
+      { name: "👥 Users", path: "/admin/users" }
     ],
     teacher: [
+<<<<<<< HEAD
       { name: "Dashboard", path: "/teacher" },
       { name: "Students", path: "/teacher/students" }
     ],
@@ -306,6 +370,15 @@ export default function Sidebar({ open, setOpen }) {
       { name: "Profile", path: "/student/profile" },
       { name: "Alerts", path: "/student/alerts" },
       { name: "Teachers Feedback", path: "/student/feedback" }
+=======
+      { name: "📊 Dashboard", path: "/teacher" },
+      { name: "🎓 Students", path: "/teacher/students" },
+      { name: "💬 Feedback", path: "/teacher/feedback" }
+    ],
+    student: [
+      { name: "📊 Dashboard", path: "/student" },
+      { name: "👤 Profile", path: "/student/profile" }
+>>>>>>> 3a43a8f89ddd771ee56a3b3851630f76c1feb76d
     ]
   };
 
@@ -318,6 +391,7 @@ export default function Sidebar({ open, setOpen }) {
     <>
       <div className={`sidebar ${open ? "open" : ""}`}>
 
+<<<<<<< HEAD
         {/* USER SECTION */}
         <div className="userBox">
           <div className="avatar">👤</div>
@@ -381,6 +455,45 @@ export default function Sidebar({ open, setOpen }) {
         </div>
 
         {/* LOGOUT */}
+=======
+        {/* TOP */}
+        <div>
+
+          {/* <h2 className="logo">
+            🎓 EduPredict
+          </h2> */}
+
+          {/* USER BOX */}
+          <div className="userBox">
+            <div className="avatar">
+              👤
+            </div>
+
+            <div className="username">
+              {username}
+            </div>
+          </div>
+
+          {/* MENU */}
+          <div className="menu">
+            {(menu[role] || []).map((item) => (
+              <NavLink
+                key={item.path}
+                to={item.path}
+                onClick={() => setOpen(false)}
+                className={({ isActive }) =>
+                  isActive ? "link active" : "link"
+                }
+              >
+                {item.name}
+              </NavLink>
+            ))}
+          </div>
+
+        </div>
+
+        {/* BOTTOM */}
+>>>>>>> 3a43a8f89ddd771ee56a3b3851630f76c1feb76d
         <div className="sidebarBottom">
           <button className="logoutBtn" onClick={handleLogout}>
             🚪 Logout
