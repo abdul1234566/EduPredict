@@ -12,7 +12,7 @@
 // import { toast } from "react-toastify";
 
 
-<<<<<<< HEAD
+
 // export default function UserManagement(){
 
 
@@ -44,7 +44,7 @@
 // role:"teacher"
 
 // });
-=======
+
 // export default function UserManagement() {
 
 
@@ -76,12 +76,12 @@
 //     role: "teacher"
 
 //   });
->>>>>>> 3a43a8f89ddd771ee56a3b3851630f76c1feb76d
 
 
 
 
-<<<<<<< HEAD
+
+
 // useEffect(()=>{
 
 // loadUsers();
@@ -112,7 +112,7 @@
 // setLoading(false);
 
 // }
-=======
+
 //   useEffect(() => {
 
 //     loadUsers();
